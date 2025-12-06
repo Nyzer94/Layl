@@ -3,19 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>HORIZON — Un jour à la fois</title>
+  <title>LAYL — Un jour à la fois</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Bricolage+Grotesque:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add("visible");
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll(".fade-in").forEach(el => observer.observe(el));
-    });
-  </script>
 </head>
 <body>
   <div class="page-wrapper">
@@ -32,7 +22,7 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012 7v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" stroke="currentColor" stroke-width="0.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
-        <div class="logo">🌿 HORIZON</div>
+        <div class="logo">🌿 LAYL</div>
         <div class="nav-links">
           <ul>
             <li>
@@ -52,11 +42,11 @@
 
         <div class="hero-layout fade-in">
           <div class="cards-column left">
-            <button class="card" data-modal="journal" data-video="videos/journal.mp4">
+            <button class="card" data-slide-to="0">
               <h3>Journal</h3>
               <p>Note tes émotions et réflexions.</p>
             </button>
-            <button class="card" data-modal="suivi" data-video="videos/suivi.mp4">
+            <button class="card" data-slide-to="1">
               <h3>Suivi</h3>
               <p>Visualise ton bien-être.</p>
             </button>
@@ -84,11 +74,11 @@
           </div>
 
           <div class="cards-column right">
-            <button class="card" data-modal="minimal" data-video="videos/minimal.mp4">
+            <button class="card" data-slide-to="2">
               <h3>Minimaliste</h3>
               <p>Interface douce et apaisante.</p>
             </button>
-            <button class="card empty-card" aria-label="Partage" title="Partage ton humeur">
+            <button class="card empty-card" data-slide-to="3" aria-label="Partage" title="Partage ton humeur">
               <h3>Partage</h3>
               <p>Partage ton humeur avec tes amis</p>
             </button>
@@ -99,25 +89,6 @@
           <button id="newsletter-btn" class="cta translucent">Recevoir la newsletter</button>
           <button id="download-beta" class="cta translucent">Télécharger la bêta</button>
         </div>
-
-        <script>
-          function updateCountdown() {
-            const targetDate = new Date('2026-01-15T00:00:00');
-            const now = new Date();
-            const diff = targetDate - now;
-            if (diff <= 0) {
-              document.getElementById('countdown').textContent = "Lancement aujourd'hui !";
-              return;
-            }
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((diff / (1000 * 60)) % 60);
-            const seconds = Math.floor((diff / 1000) % 60);
-            document.getElementById('countdown').textContent = `Lancement dans ${days}j ${hours}h ${minutes}m ${seconds}s`;
-          }
-          updateCountdown();
-          setInterval(updateCountdown, 1000);
-        </script>
       </div>
     </header>
 
@@ -129,22 +100,22 @@
           <div class="story-section fade-in">
             <div class="story-text">
               <h3>Comment tout a commencé</h3>
-              <p>Horizon est né d'un constat simple : dans un monde qui va toujours plus vite, il devient difficile de prendre un moment pour soi. Nous avons voulu créer un espace où chacun peut ralentir, observer son ressenti et retrouver de la clarté intérieure.</p>
-              <p>Au départ, c'était une simple idée entre amis : et si suivre son humeur pouvait devenir une habitude douce, utile et accessible à tous ? Aujourd'hui, Horizon incarne cette envie — un lieu numérique apaisé, conçu pour le bien-être et la conscience de soi.</p>
+              <p>Layl est né d'un constat simple : dans un monde qui va toujours plus vite, il devient difficile de prendre un moment pour soi. Nous avons voulu créer un espace où chacun peut ralentir, observer son ressenti et retrouver de la clarté intérieure.</p>
+              <p>Au départ, c'était une simple idée entre amis : et si suivre son humeur pouvait devenir une habitude douce, utile et accessible à tous ? Aujourd'hui, Layl incarne cette envie — un lieu numérique apaisé, conçu pour le bien-être et la conscience de soi.</p>
             </div>
             <div class="story-image">
-              <img src="images/story1.jpg" alt="Début du projet">
+              <img src="images/story1.jpg" alt="Début du projet" loading="lazy">
             </div>
           </div>
 
           <div class="story-section fade-in">
             <div class="story-text">
               <h3>Notre vision</h3>
-              <p>Nous croyons que le bien-être commence par la compréhension de soi. Horizon ne se limite pas à une application : c'est un compagnon de route, pensé pour aider chacun à mieux se connaître, se recentrer et évoluer à son rythme.</p>
-              <p>Notre objectif est de bâtir un environnement simple, humain et inspirant, où la technologie sert à reconnecter — non à déconnecter. Chaque fonctionnalité d'Horizon est imaginée pour encourager la réflexion, la sérénité et l'équilibre personnel, jour après jour.</p>
+              <p>Nous croyons que le bien-être commence par la compréhension de soi. Layl ne se limite pas à une application : c'est un compagnon de route, pensé pour aider chacun à mieux se connaître, se recentrer et évoluer à son rythme.</p>
+              <p>Notre objectif est de bâtir un environnement simple, humain et inspirant, où la technologie sert à reconnecter — non à déconnecter. Chaque fonctionnalité de Layl est imaginée pour encourager la réflexion, la sérénité et l'équilibre personnel, jour après jour.</p>
             </div>
             <div class="story-image">
-              <img src="images/story2.jpg" alt="Notre vision">
+              <img src="images/story2.jpg" alt="Notre vision" loading="lazy">
             </div>
           </div>
         </div>
@@ -158,43 +129,43 @@
             <div class="reviews-track" id="reviews-track">
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Lola</span><img class="rev-avatar" src="images/avatar1.png" alt=""></div>
-                <div class="rev-stars">★★★★★</div>
+                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
                 <p class="rev-text">« J'utilise Horizon chaque soir, ça m'aide à prendre du recul. »</p>
                 <div class="rev-date">12 juin 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Sam</span><img class="rev-avatar" src="images/avatar2.png" alt=""></div>
-                <div class="rev-stars">★★★★★</div>
+                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
                 <p class="rev-text">« Simple et apaisant — parfait pour commencer la journée. »</p>
                 <div class="rev-date">3 juillet 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Marina</span><img class="rev-avatar" src="images/avatar3.png" alt=""></div>
-                <div class="rev-stars">★★★★☆</div>
+                <div class="rev-stars" role="img" aria-label="4 sur 5 étoiles" data-rating="4"></div>
                 <p class="rev-text">« Design doux, très agréable. »</p>
                 <div class="rev-date">21 mai 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Noé</span><img class="rev-avatar" src="images/avatar4.png" alt=""></div>
-                <div class="rev-stars">★★★★★</div>
+                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
                 <p class="rev-text">« Les graphiques m'ont aidé à comprendre mes patterns. »</p>
                 <div class="rev-date">2 août 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Alya</span><img class="rev-avatar" src="images/avatar5.png" alt=""></div>
-                <div class="rev-stars">★★★★☆</div>
+                <div class="rev-stars" role="img" aria-label="4 sur 5 étoiles" data-rating="4"></div>
                 <p class="rev-text">« Interface calme, super expérience. »</p>
                 <div class="rev-date">28 avril 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Rayan</span><img class="rev-avatar" src="images/avatar6.png" alt=""></div>
-                <div class="rev-stars">★★★★★</div>
+                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
                 <p class="rev-text">« Utile et bien pensé. »</p>
                 <div class="rev-date">1 janvier 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Yanis</span><img class="rev-avatar" src="images/avatar7.png" alt=""></div>
-                <div class="rev-stars">★★★★★</div>
+                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
                 <p class="rev-text">« J'adore le style minimal, apaisant. »</p>
                 <div class="rev-date">14 mars 2025</div>
               </div>
@@ -207,7 +178,7 @@
       <section id="premium" class="section fade-in">
         <div class="container">
           <h2>🔒 Accédez au PREMIUM</h2>
-          <p>Le premium d'Horizon offre des fonctionnalités avancées pour vous accompagner au quotidien : export de données, tendances détaillées, thèmes exclusifs, et partage sécurisé avec vos proches.</p>
+          <p>Le premium de Layl offre des fonctionnalités avancées pour vous accompagner au quotidien : export de données, tendances détaillées, thèmes exclusifs, et partage sécurisé avec vos proches.</p>
           <ul class="premium-features">
             <li><strong>Analyse avancée :</strong> graphiques approfondis et rapports hebdomadaires.</li>
             <li><strong>Thèmes exclusifs :</strong> personnalise l'app avec des ambiances apaisantes.</li>
@@ -220,7 +191,7 @@
     </main>
 
     <footer>
-      <p>© 2025 Horizon • Créé par Rayan & Yanis</p>
+      <p>© 2025 Layl • Créé par Rayan & Yanis</p>
     </footer>
   </div>
 
@@ -231,6 +202,9 @@
       <form id="newsletter-form">
         <input type="text" name="prenom" id="newsletter-prenom" placeholder="Prénom" required>
         <input type="email" name="email" id="newsletter-email" placeholder="Email" required>
+        <p class="feature-notice">
+          Pour l'instant, cette fonctionnalité n'est pas encore active.
+        </p>
         
         <label class="consent-label">
           <input type="checkbox" name="consentement" id="newsletter-consent" required />
@@ -249,7 +223,7 @@
 
   <div class="modal" id="modal-journal">
     <div class="modal-content">
-      <img src="images/journal.jpg" alt="Journal quotidien" class="modal-img">
+      <img src="images/journal.jpg" alt="Journal quotidien" class="modal-img" loading="lazy">
       <div class="modal-text">
         <h2>Journal quotidien</h2>
         <p>Note chaque journée avec une phrase, un mot ou une émotion. Ces petites traces deviennent ton miroir émotionnel, un pas vers plus de clarté intérieure.</p>
@@ -260,7 +234,7 @@
 
   <div class="modal" id="modal-suivi">
     <div class="modal-content">
-      <img src="images/suivi.jpg" alt="Suivi d'humeur" class="modal-img">
+      <img src="images/suivi.jpg" alt="Suivi d'humeur" class="modal-img" loading="lazy">
       <div class="modal-text">
         <h2>Suivi d'humeur</h2>
         <p>Observe ton évolution au fil du temps. Découvre les moments forts, les périodes calmes, et apprends à repérer ce qui t'influence le plus.</p>
@@ -271,7 +245,7 @@
 
   <div class="modal" id="modal-minimal">
     <div class="modal-content">
-      <img src="images/minimal.jpg" alt="Minimal et apaisant" class="modal-img">
+      <img src="images/minimal.jpg" alt="Minimal et apaisant" class="modal-img" loading="lazy">
       <div class="modal-text">
         <h2>Minimal et apaisant</h2>
         <p>Une interface épurée et respirante. Aucune distraction, juste ton ressenti et la sérénité d'un espace clair.</p>
