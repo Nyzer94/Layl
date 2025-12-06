@@ -49,19 +49,11 @@ body {
     #f2e3d5,
     #2a6048
   );
-  background-size: 400% 400%;
-  animation: waveGradient 16s ease-in-out infinite;
+  background-size: 300% 300%;
   transition: background 1s ease;
+  /* Position controlled by JS via CSS variables */
+  background-position: calc(var(--mouse-x, 50) * 1%) calc(var(--mouse-y, 50) * 1%);
 }
-
-@keyframes waveGradient {
-  0%   { background-position: 0% 50%; }
-  25%  { background-position: 50% 100%; }
-  50%  { background-position: 100% 50%; }
-  75%  { background-position: 50% 0%; }
-  100% { background-position: 0% 50%; }
-}
-
 
 
 
@@ -583,6 +575,23 @@ header::before {
   font-size: 1.1rem;
 }
 
+.rev-stars span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.review.visible .rev-stars span,
+.fade-in.visible .review .rev-stars span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rev-stars .star-empty {
+  color: #ccc;
+}
+
 .rev-text {
   font-style: italic;
   color: var(--text);
@@ -695,11 +704,12 @@ header::before {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(0.95);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(50px);
+  background: rgba(255, 255, 255, 0.25);
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
   border-radius: 25px;
-  border: 2px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
   max-width: 750px;
   width: 90%;
   opacity: 0;
