@@ -91,7 +91,7 @@
       font-size: clamp(3rem, 5vw, 4.5rem);
       line-height: 1.1;
       margin-bottom: 1rem;
-      background: linear-gradient(to bottom right, #fff, #a5b4fc);
+      background: linear-gradient(135deg, var(--color-accent) 0%, #f0fdf4 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -199,20 +199,20 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding-top: 100px;
+      padding-top: 80px; /* Remonté */
       text-align: center;
     }
 
     .hero-head {
       max-width: 700px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2rem; /* Marge réduite */
       padding: 0 1rem;
     }
 
     .hero-layout {
       display: grid;
       grid-template-columns: 1fr auto 1fr;
-      gap: 2rem;
+      gap: 1.5rem; /* Gap réduit */
       align-items: center;
       width: 100%;
       max-width: 1200px;
@@ -234,7 +234,7 @@
       -webkit-backdrop-filter: blur(var(--glass-blur));
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-card);
-      padding: 2rem;
+      padding: 1.5rem; /* Padding réduit */
       text-align: left;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -266,7 +266,7 @@
 
     .phone-preview {
       position: relative;
-      width: 300px;
+      width: 240px; /* Réduit de ~20% (300 -> 240) */
       margin: 0 auto;
       z-index: 10;
       animation: float 6s ease-in-out infinite;
@@ -380,7 +380,7 @@
     /* --- CTA BUTTONS (Pill Shape) --- */
 
     .cta-group {
-      margin-top: 4rem;
+      margin-top: 3rem; /* Remonté */
       display: flex;
       gap: 1rem;
       justify-content: center;
@@ -449,6 +449,9 @@
     .story-text {
       flex: 1;
     }
+    .story-text p {
+      text-align: justify; /* Justifié style livre */
+    }
 
     .story-image {
       flex: 1;
@@ -468,22 +471,48 @@
 
     .reviews-track {
       display: flex;
-      gap: 2rem;
-      overflow-x: auto;
-      padding: 2rem;
-      scroll-snap-type: x mandatory;
-      scrollbar-width: none; /* Firefox */
+      gap: 2rem; 
+      width: max-content;
+      animation: scroll 60s linear infinite; /* Infinite Marquee */
     }
-    .reviews-track::-webkit-scrollbar { display: none; }
+    
+    .reviews-track:hover {
+      animation-play-state: paused; /* Pause au survol */
+    }
+    
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    
+    /* Masquer les flèches CSS si elles existent encore */
+    .rev-arrow { display: none; }
 
     .review {
       min-width: 300px;
+      max-width: 300px;
       background: var(--glass-bg);
       border: 1px solid var(--glass-border);
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: var(--radius-card);
-      scroll-snap-align: center;
+      /* scroll-snap-align: center; retiré pour le marquee */
     }
+    
+    .rev-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+    
+    .rev-avatar {
+      width: 40px; /* Réduit drastiquement */
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    
+    .rev-stars { color: #fbbf24; margin-bottom: 0.5rem; }
 
     /* --- RESPONSIVE --- */
 
@@ -556,6 +585,40 @@
     .close-modal:hover {
       border-color: var(--color-accent);
       color: var(--color-accent);
+    }
+    
+    /* Premium Section Centering */
+    #premium .container {
+      text-align: center;
+    }
+    .premium-features {
+      text-align: left;
+      display: inline-block;
+      margin: 2rem auto;
+    }
+    
+    /* Newsletter Styling */
+    #newsletter-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    #newsletter-form input {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1rem;
+      border-radius: 12px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      transition: border-color 0.3s;
+    }
+    
+    #newsletter-form input:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background: rgba(255, 255, 255, 0.08);
     }
   </style>
 </head>
@@ -677,52 +740,62 @@
         <div class="container">
           <h2>Ce que disent les utilisateurs</h2>
           <div class="reviews-wrap">
-            <button class="rev-arrow left" aria-label="Précédent">◀</button>
+            <!-- Pas de flèches -->
             <div class="reviews-track" id="reviews-track">
+              <!-- Set 1 -->
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Lola</span><img class="rev-avatar" src="images/avatar1.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
+                <div class="rev-stars">★★★★★</div>
                 <p class="rev-text">« J'utilise Horizon chaque soir, ça m'aide à prendre du recul. »</p>
-                <div class="rev-date">12 juin 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Sam</span><img class="rev-avatar" src="images/avatar2.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
+                <div class="rev-stars">★★★★★</div>
                 <p class="rev-text">« Simple et apaisant — parfait pour commencer la journée. »</p>
-                <div class="rev-date">3 juillet 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Marina</span><img class="rev-avatar" src="images/avatar3.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="4 sur 5 étoiles" data-rating="4"></div>
+                <div class="rev-stars">★★★★☆</div>
                 <p class="rev-text">« Design doux, très agréable. »</p>
-                <div class="rev-date">21 mai 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Noé</span><img class="rev-avatar" src="images/avatar4.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
+                <div class="rev-stars">★★★★★</div>
                 <p class="rev-text">« Les graphiques m'ont aidé à comprendre mes patterns. »</p>
-                <div class="rev-date">2 août 2025</div>
               </div>
               <div class="review">
                 <div class="rev-head"><span class="rev-name">Alya</span><img class="rev-avatar" src="images/avatar5.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="4 sur 5 étoiles" data-rating="4"></div>
+                <div class="rev-stars">★★★★☆</div>
                 <p class="rev-text">« Interface calme, super expérience. »</p>
-                <div class="rev-date">28 avril 2025</div>
+              </div>
+              
+              <!-- Set 2 (Duplication pour l'effet infini) -->
+              <div class="review">
+                <div class="rev-head"><span class="rev-name">Lola</span><img class="rev-avatar" src="images/avatar1.png" alt=""></div>
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-text">« J'utilise Horizon chaque soir, ça m'aide à prendre du recul. »</p>
               </div>
               <div class="review">
-                <div class="rev-head"><span class="rev-name">Rayan</span><img class="rev-avatar" src="images/avatar6.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
-                <p class="rev-text">« Utile et bien pensé. »</p>
-                <div class="rev-date">1 janvier 2025</div>
+                <div class="rev-head"><span class="rev-name">Sam</span><img class="rev-avatar" src="images/avatar2.png" alt=""></div>
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-text">« Simple et apaisant — parfait pour commencer la journée. »</p>
               </div>
               <div class="review">
-                <div class="rev-head"><span class="rev-name">Yanis</span><img class="rev-avatar" src="images/avatar7.png" alt=""></div>
-                <div class="rev-stars" role="img" aria-label="5 sur 5 étoiles" data-rating="5"></div>
-                <p class="rev-text">« J'adore le style minimal, apaisant. »</p>
-                <div class="rev-date">14 mars 2025</div>
+                <div class="rev-head"><span class="rev-name">Marina</span><img class="rev-avatar" src="images/avatar3.png" alt=""></div>
+                <div class="rev-stars">★★★★☆</div>
+                <p class="rev-text">« Design doux, très agréable. »</p>
+              </div>
+              <div class="review">
+                <div class="rev-head"><span class="rev-name">Noé</span><img class="rev-avatar" src="images/avatar4.png" alt=""></div>
+                <div class="rev-stars">★★★★★</div>
+                <p class="rev-text">« Les graphiques m'ont aidé à comprendre mes patterns. »</p>
+              </div>
+              <div class="review">
+                <div class="rev-head"><span class="rev-name">Alya</span><img class="rev-avatar" src="images/avatar5.png" alt=""></div>
+                <div class="rev-stars">★★★★☆</div>
+                <p class="rev-text">« Interface calme, super expérience. »</p>
               </div>
             </div>
-            <button class="rev-arrow right" aria-label="Suivant">▶</button>
           </div>
         </div>
       </section>
@@ -737,13 +810,13 @@
             <li><strong>Partage sécurisé :</strong> invite des proches et partage des moments choisis.</li>
             <li><strong>Priorité bêta :</strong> teste les nouvelles fonctionnalités en avant-première.</li>
           </ul>
-          <a href="#download" class="cta premium-cta">Découvrir le PREMIUM</a>
+          <button id="open-premium" class="cta premium-cta">Découvrir le PREMIUM</button>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>© 2025 Layl • Créé par Rayan & Yanis</p>
+    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+      <p>© 2025 Layl • Créé par Rayan & Yanis | <a href="#" style="text-decoration: underline; opacity: 0.8;">Mentions légales</a></p>
     </footer>
   </div>
 
@@ -969,6 +1042,13 @@
           if (e.target === modal) modal.classList.remove('open');
         });
       });
+      
+      // --- 5. PREMIUM MODAL TRIGGER ---
+      const premiumBtn = document.getElementById('open-premium');
+      const premiumModal = document.getElementById('modal-premium');
+      if(premiumBtn && premiumModal) {
+        premiumBtn.addEventListener('click', () => premiumModal.classList.add('open'));
+      }
     });
   </script>
 </body>
